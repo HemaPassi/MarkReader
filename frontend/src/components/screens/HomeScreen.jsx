@@ -1,17 +1,42 @@
+//import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import products from "../../products.js";
+// import products from "../../products.js";
+import { useGetProductsQuery } from "../../slices/productsApiSlice.js";
 import Product from "../product.jsx";
 
 const HomeScreen = () => {
-  console.log(products);
+  const { data: products, isLoading, isError, error } = useGetProductsQuery();
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch("/api/products", {
+  //         headers: { Accept: "application/json" },
+  //       });
+  //       const data = await response.json();
+  //       setProducts(data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, []);
+
   return (
     <div>
       <h1>Latest Products</h1>
-      <Row>
-        {products.map((product) => (
-          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <Product product={product} />
-            {/* <div className="product-card">
+      {isLoading ? (
+        <p>Loading products...</p>
+      ) : isError ? (
+        <p>Error: {error?.data?.message || error.error}</p>
+      ) : (
+        <Row>
+          {products.map((product) => (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+              {/* <div className="product-card">
               <img
                 src={product.image}
                 alt={product.name}
@@ -22,9 +47,10 @@ const HomeScreen = () => {
                 <p>${product.price}</p>
               </div>
             </div> */}
-          </Col>
-        ))}
-      </Row>
+            </Col>
+          ))}
+        </Row>
+      )}
     </div>
   );
 };

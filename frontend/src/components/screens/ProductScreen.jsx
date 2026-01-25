@@ -1,12 +1,41 @@
+//import { useEffect, useState } from "react";
+import { useGetProductDetailsQuery } from "../../slices/productsApiSlice.js";
+
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import products from "../../products";
 import Rating from "../Rating";
 
 const ProductScreen = () => {
-  const { id } = useParams();
-  const product = products.find((p) => p._id === id);
+  // const [product, setProduct] = useState({});
 
+  const { id } = useParams();
+
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch(`/api/products/${id}`);
+  //       const data = await response.json();
+  //       setProduct(data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, [id]);
+
+  const {
+    data: product,
+    isLoading,
+    isError,
+    error,
+  } = useGetProductDetailsQuery(id);
+  if (isLoading) {
+    return <p>Loading product details...</p>;
+  }
+  if (isError) {
+    return <p>Error: {error?.data?.message || error.error}</p>;
+  }
   return (
     <div>
       <Link className="btn btn-light my-3" to="/">
