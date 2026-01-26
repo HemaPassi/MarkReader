@@ -13,3 +13,7 @@ jobs:
         #   echo "cloning repo..."
         #   echo "${{toJson(github)}}"
         #   git clone https://github.com/${{github.repository}}.git
+      - name: Install Dependencies
+        run: npm ci # ci install from package-lock we can also use npm install
+      - name: Run Tests
+        run: npm run test
