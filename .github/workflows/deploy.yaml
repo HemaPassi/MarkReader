@@ -4,16 +4,22 @@ on: [push, workflow_dispatch]
 #   - push
 #   - workflow_dispatch
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Get Code
-        uses: actions/checkout@v6 # got from marketplace github - inbuild inse want to aovide mannul code as written below
-        # run: |
-        #   echo "cloning repo..."
-        #   echo "${{toJson(github)}}"
-        #   git clone https://github.com/${{github.repository}}.git
-      - name: Install Dependencies
-        run: npm install # ci install from package-lock we can also use npm install
-      - name: Run Tests
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend # 👈 run inside frontend folder
+
+      - name: Run tests
         run: npm test
+        working-directory: frontend
