@@ -1,0 +1,14 @@
+name: Deploy Proshop
+on: [push, workflow_dispatch]
+# on:
+#   - push
+#   - workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        run: |
+          echo "cloning repo..."
+          echo "${{toJson(github)}}"
+          git clone https://github.com/${{github.repository}}.git
