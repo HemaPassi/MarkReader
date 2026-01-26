@@ -2,6 +2,8 @@
 import { Col, Row } from "react-bootstrap";
 // import products from "../../products.js";
 import { useGetProductsQuery } from "../../slices/productsApiSlice.js";
+import Loader from "../Loader.jsx";
+import Message from "../Message.jsx";
 import Product from "../product.jsx";
 
 const HomeScreen = () => {
@@ -28,9 +30,11 @@ const HomeScreen = () => {
     <div>
       <h1>Latest Products</h1>
       {isLoading ? (
-        <p>Loading products...</p>
+        <Loader />
       ) : isError ? (
-        <p>Error: {error?.data?.message || error.error}</p>
+        <Message variant="danger">
+          <p>Error: {error?.data?.message || error.error}</p>
+        </Message>
       ) : (
         <Row>
           {products.map((product) => (

@@ -1,8 +1,10 @@
 //import { useEffect, useState } from "react";
-import { useGetProductDetailsQuery } from "../../slices/productsApiSlice.js";
+import { useGetProductDetailsQuery } from "../../slices/productsApiSlice";
 
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
+import Loader from "../Loader";
+import Message from "../Message";
 import Rating from "../Rating";
 
 const ProductScreen = () => {
@@ -31,10 +33,14 @@ const ProductScreen = () => {
     error,
   } = useGetProductDetailsQuery(id);
   if (isLoading) {
-    return <p>Loading product details...</p>;
+    return <Loader />;
   }
   if (isError) {
-    return <p>Error: {error?.data?.message || error.error}</p>;
+    return (
+      <Message variant="danger">
+        <p>Error: {error?.data?.message || error.error}</p>
+      </Message>
+    );
   }
   return (
     <div>
