@@ -4,7 +4,6 @@ const FormContainer = ({ children }) => {
     <Container>
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}></Col>
-        <h5>In Form component</h5>
         {children}
       </Row>
     </Container>
