@@ -9,13 +9,22 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-    }),
-    // getProductDetails: builder.query({
-    //   query: (id) => `${USERS_URL}/${id}`,
-    //   providesTags: ["Product"],
-    //   keepUnusedDataFor: 5,
-    // }),
-  }),
+      }),
+      register: builder.mutation({
+        query: (data) => ({
+          url: `${USERS_URL}`,
+          method:'POST',
+          body: data
+        })
+      }),
+      logout: builder.mutation({
+        query: () => ({
+          url: `${USERS_URL}/logout`,
+          method:'POST'
+        }) 
+      })
+    })
+
 });
 
-export const { useLoginMutation } = usersApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = usersApiSlice;
