@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { useGetProductsQuery } from "../../slices/productsApiSlice.js";
 import Loader from "../Loader";
 import Message from "../Message";
-import Product from "../product";
+import Product from "../Product";
 
 const HomeScreen = () => {
   const { data: products, isLoading, isError, error } = useGetProductsQuery();
@@ -37,7 +37,7 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <Row>
-          {products.map((product) => (
+          {products && products.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />
               {/* <div className="product-card">
