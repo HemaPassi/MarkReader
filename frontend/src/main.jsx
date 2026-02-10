@@ -13,11 +13,11 @@ import store from "./store.js";
 import App from "./App.jsx";
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
-import HomeScreen from "./components/screens/HomeScreen.jsx";
-import RegisterScreen from "./components/screens/RegisterScreen.jsx";
-import LoginScreen from "./components/screens/LoginScreen.jsx";
+import HomeScreen from "./screens/HomeScreen.jsx";
+import RegisterScreen from "./screens/RegisterScreen.jsx";
+import LoginScreen from "./screens/LoginScreen.jsx";
 
-import ProductScreen from "./components/screens/ProductScreen.jsx";
+import ProductScreen from "./screens/ProductScreen.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,10 +1,10 @@
 //import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 // import products from "../../products.js";
-import { useGetProductsQuery } from "../../slices/productsApiSlice.js";
-import Loader from "../Loader";
-import Message from "../Message";
-//import Product from "../Product";
+import { useGetProductsQuery } from "../slices/productsApiSlice.js";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import Product from "../components/Product";
 
 const HomeScreen = () => {
   const { data: products, isLoading, isError, error } = useGetProductsQuery();
@@ -39,8 +39,8 @@ const HomeScreen = () => {
         <Row>
           {products && products.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              {/* TODO:  <Product product={product} /> */}
-             <div className="product-card">
+              { <Product product={product} /> }
+             {/* <div className="product-card">
               <img
                 src={product.image}
                 alt={product.name}
@@ -50,7 +50,7 @@ const HomeScreen = () => {
                 <h3>{product.name}</h3>
                 <p>${product.price}</p>
               </div>
-            </div> 
+            </div>  */}
             </Col>
           ))}
         </Row>

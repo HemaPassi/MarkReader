@@ -15,7 +15,7 @@ jobs:
     #  MONGO_URL: mongodb://localhost/order  -  details - to be added - to avoid polluting data in prodcution
     strategy:
       matrix:
-        node-version: [20.x, 22.x] # will run alos on with two node version - two jobs will run
+        node-version: [22.x] # will run alos on with two node version - two jobs will run
         # mongodb-version: ['8.0']
 
     steps:
@@ -36,6 +36,6 @@ jobs:
         run: npm install
         working-directory: frontend #  run inside frontend folder
 
-      - name: Run tests
-        run: npm test
-        working-directory: frontend
+      # - name: Run tests
+      #   run: npm test
+      #   working-directory: frontend

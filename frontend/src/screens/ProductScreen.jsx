@@ -1,11 +1,11 @@
 //import { useEffect, useState } from "react";
-import { useGetProductDetailsQuery } from "../../slices/productsApiSlice";
+import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import Loader from "../Loader";
-import Message from "../Message";
-import Rating from "../Rating";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import Rating from "../components/Rating";
 
 const ProductScreen = () => {
   // const [product, setProduct] = useState({});
